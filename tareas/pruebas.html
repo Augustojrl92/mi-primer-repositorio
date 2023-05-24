@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AHORCADO</title>
+  <script src="script.js"></script>
+</head>
+<body>
+  <h1>AHORCADO</h1>
+
+  <button onclick="elegirPalabra()">Elegir Palabra</button>
+
+  <h3>Palabra Elegida:</h3>
+  <p id="palabraAleatoria"></p>
+  <p id="palabraElegida"> </p>
+
+  <input type="text" id="letraInput" placeholder="Ingrese una letra">
+  <button onclick="verificarLetra()">Verificar Letra</button>
+
+  <h3>Letras Adivinadas:</h3>
+  <p id="letrasAdivinadas"></p>
+
+  <script>
+    var palabras = [
+      "Manzana",
+      "Cambur",
+      "Naranja",
+      "Pera",
+      "Mango",
+      "Melón",
+      "Uva",
+      "Piña",
+      "Patilla",
+      "Fresa"
+    ];
+
+    var palabraElegida = "";
+    var letrasAdivinadas = [];
+
+    function elegirPalabra() {
+      var indiceAleatorio = Math.floor(Math.random() * palabras.length);
+      palabraElegida = palabras[indiceAleatorio];
+      document.getElementById("palabraAleatoria").textContent = palabraElegida;
+      
+      letrasAdivinadas = [];
+      for (var i = 0; i < palabraElegida.length; i++) {
+        letrasAdivinadas.push("_");
+      }
+      document.getElementById("palabraElegida").textContent = letrasAdivinadas.join(" ");
+    }
+
+    function verificarLetra() {
+      var letraInput = document.getElementById("letraInput").value;
+      letraInput = letraInput.toUpperCase();
+
+      if (letraInput.length === 1) {
+        var letrasEncontradas = 0;
+        for (var i = 0; i < palabraElegida.length; i++) {
+          if (palabraElegida[i].toUpperCase() === letraInput) {
+            letrasAdivinadas[i] = letraInput;
+            letrasEncontradas++;
+          }
+        }
+
+        document.getElementById("palabraElegida").textContent = letrasAdivinadas.join(" ");
+        document.getElementById("letraInput").value = "";
+
+        if (letrasEncontradas === 0) {
+          var letrasAdivinadasTexto = document.getElementById("letrasAdivinadas").textContent;
+          letrasAdivinadasTexto += letraInput + " ";
+          document.getElementById("letrasAdivinadas").textContent = letrasAdivinadasTexto;
+        }
+
+        if (letrasAdivinadas.indexOf("_") === -1) {
+          alert("¡Felicidades! Has adivinado la palabra.");
+        }
+      }
+    }
+  </script>
+</body>
+</html>

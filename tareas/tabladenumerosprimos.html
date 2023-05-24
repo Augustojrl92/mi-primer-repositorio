@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Pagina de ciudades</title>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<h2>CSS Layout Float</h2>
+<p>In this example, we have created a header, two columns/boxes and a footer. On smaller screens, the columns will stack on top of each other.</p>
+<p>Resize the browser window to see the responsive effect (you will learn more about this in our next chapter - HTML Responsive.)</p>
+
+<header>
+  <h2>Cities</h2>
+</header>
+
+<section>
+    <nav>
+        <div id="reloj"></div>
+
+        <script>
+          function reloj() {
+            var currentTime = new Date();
+            var hours = currentTime.getHours();
+            var minutes = currentTime.getMinutes();
+            var seconds = currentTime.getSeconds();
+      
+        
+      
+            var reloj = document.getElementById('reloj');
+            reloj.textContent = hours + ":" + minutes + ":" + seconds;
+          }
+      
+         
+          setInterval(reloj, 1000);
+        </script>
+		<ul>
+		  <li><br>Ciudades
+			<ul>
+			  <li><a href="londres.html">London</a></li>
+			  <li><a href="paris.html">Paris</a></li>
+			  <li><a href="tokio.html">Tokyo</a></li>
+			</ul>
+		  </li>
+		  <li><a href="slaiderimagenes.html">Slaider de Fotos</a></li>
+		  <li><a href= "generartabla.html">Generar Tabla con Texto</a></li>
+		  <li><a href= "tabladenumerosprimos.html">Tabla de Numeros Primos</a></li>
+          <li><a href= "adivinarnumero.html">Adivina el Numero</a></li>
+          <li><a href= "calculadora.html">Calculadora</a></li>
+          <li><a href= "piramideasteriscos.html">Piramide de asteriscos</a></li>
+          <li><a href= "piramidehueca.html">Piramide de asteriscos Hueca</a></li>
+          <li><a href= "Factorial.html">Factorial</a></li>
+          <li><a href= "pedirnumeroysumar.html">Pedir Numeros y sumar</a></li>
+          
+		</ul>
+	  </nav>
+  <article>
+    <h1>Calculadora de números primos</h1>
+	<button onclick="calcularPrimos()">Mostrar primeros 100 primos en una tabla de 10x10</button>
+	<table id="tablaPrimos"></table>
+      </article>
+</section>
+
+<footer>
+  <p>Footer</p>
+</footer>
+<script type="text/javascript">
+    function esPrimo(numero) {
+        // Si el número es menor que 2, no es primo
+        if (numero < 2) {
+            return false;
+        }
+        // Comprobar si el número es divisible por algún número entre 2 y la raíz cuadrada del número en cuestión
+        for (var i = 2; i <= Math.sqrt(numero); i++) {
+            if (numero % i === 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    function calcularPrimos() {
+        var maximo = 1000;
+        var tabla = document.getElementById("tablaPrimos");
+        tabla.innerHTML = "";
+        var contadorPrimos = 0;
+        var i = 1;
+        while (contadorPrimos < 100 && i <= maximo) {
+            if (esPrimo(i)) {
+                // Calcular la posición de la celda en la tabla
+                var fila = Math.floor(contadorPrimos / 10);
+                var columna = contadorPrimos % 10;
+                // Crear un elemento de celda de tabla y añadir el número primo
+                var celda = document.createElement("td");
+                celda.textContent = i;
+                // Añadir la celda a la fila correspondiente
+                if (tabla.rows.length <= fila) {
+                    var nuevaFila = tabla.insertRow(-1);
+                    for (var j = 0; j < 10; j++) {
+                        nuevaFila.insertCell(-1);
+                    }
+                }
+                tabla.rows[fila].cells[columna].appendChild(celda);
+                contadorPrimos++;
+            }
+            i++;
+        }
+    }
+</script>
+</body>
+</html>
+ 

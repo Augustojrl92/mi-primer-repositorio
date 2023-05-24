@@ -1,0 +1,35 @@
+<script>	
+			var rutas=['',
+				'imagenes/leche.jpg',
+				'imagenes/queso.jpg',
+				'imagenes/yogur.jpg',
+				'imagenes/mantequilla.jpg',
+				'imagenes/ternera.jpg',
+				'imagenes/cerdo.jpg',
+				'imagenes/avestruz.jpg',
+				'imagenes/caballo.jpg',
+				'imagenes/buey.jpg',
+
+				'imagenes/pescadoazul.jpg',
+				'imagenes/pescadoblanco.jpg',
+				'imagenes/crustaceos.jpg',
+				'imagenes/congelados.jpg',
+				'imagenes/cereales.jpg',
+				'imagenes/verduras.gif',
+				'imagenes/huevos.jpg',
+				'imagenes/pasta.jpg',
+				'imagenes/frutas.jpg'
+				];
+
+			for (x=1;x<=18;x++){
+				document.getElementById("producto" + x).onclick=Entorno(x);
+			}
+		
+			function Entorno(cual){
+				return function(){
+					document.getElementById("imgVisor").src=rutas[cual];
+				}
+			}
+		</script>
+<a id="producto1" href="#">Leche</a>
+<img id="imgVisor" src="imagenes/select.jpg">

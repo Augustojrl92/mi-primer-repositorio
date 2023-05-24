@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Pagina de ciudades</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+
+<h2>CSS Layout Float</h2>
+<p>In this example, we have created a header, two columns/boxes, and a footer. On smaller screens, the columns will stack on top of each other.</p>
+<p>Resize the browser window to see the responsive effect (you will learn more about this in our next chapter - HTML Responsive.)</p>
+
+<header>
+  <h2>Cities</h2>
+</header>
+
+<section>
+    <nav>
+        <div id="reloj"></div>
+
+        <script>
+          function reloj() {
+            var currentTime = new Date();
+            var hours = currentTime.getHours();
+            var minutes = currentTime.getMinutes();
+            var seconds = currentTime.getSeconds();
+      
+        
+      
+            var reloj = document.getElementById('reloj');
+            reloj.textContent = hours + ":" + minutes + ":" + seconds;
+          }
+      
+         
+          setInterval(reloj, 1000);
+        </script>
+		<ul>
+		  <li><br>Ciudades
+			<ul>
+			  <li><a href="londres.html">London</a></li>
+			  <li><a href="paris.html">Paris</a></li>
+			  <li><a href="tokio.html">Tokyo</a></li>
+			</ul>
+		  </li>
+		  <li><a href="slaiderimagenes.html">Slaider de Fotos</a></li>
+		  <li><a href= "generartabla.html">Generar Tabla con Texto</a></li>
+		  <li><a href= "tabladenumerosprimos.html">Tabla de Numeros Primos</a></li>
+          <li><a href= "adivinarnumero.html">Adivina el Numero</a></li>
+          <li><a href= "calculadora.html">Calculadora</a></li>
+          <li><a href= "piramideasteriscos.html">Piramide de asteriscos</a></li>
+          <li><a href= "piramidehueca.html">Piramide de asteriscos Hueca</a></li>
+          <li><a href= "Factorial.html">Factorial</a></li>
+          <li><a href= "pedirnumeroysumar.html">Pedir Numeros y sumar</a></li>
+          
+		</ul>
+	  </nav>
+  
+  <article>
+    <div id="slider">
+      <div class="slider-container">
+        <img src="imagenes/imagen1.jpg" alt="Image 1">
+      </div>
+      <div class="slider-buttons">
+        <button id="comienzo">Primera</button>
+        <button id="anterior">Anterior</button>
+        <button id="siguente">Siguiente</button>
+        <button id="ultima">Última</button>
+      </div>
+    </div>
+  </article>
+</section>
+
+<footer>
+  <p>Footer</p>
+</footer>
+
+<script>
+  const sliderContainer = document.querySelector(".slider-container");
+  const sliderButtons = document.querySelector(".slider-buttons");
+
+  const imagenes = [
+      "imagenes/imagen1.jpg",
+      "imagenes/imagen2.jpg",
+      "imagenes/imagen3.jpg",
+      "imagenes/imagen4.jpg",
+  ];
+
+  let indiceImagenActual = 0;
+
+  // Función para actualizar la imagen actual
+  function actualizarImagen() {
+    sliderContainer.innerHTML = "";
+    const imagenActual = document.createElement("img");
+    imagenActual.src = imagenes[indiceImagenActual];
+    sliderContainer.appendChild(imagenActual);
+  }
+
+  // Función para ir a la imagen anterior
+  function irAImagenAnterior() {
+    if (indiceImagenActual === 0) {
+      indiceImagenActual = imagenes.length - 1;
+    } else {
+      indiceImagenActual--;
+    }
+    actualizarImagen();
+  }
+
+  // Función para ir a la siguiente imagen
+function irASiguienteImagen() {
+if (indiceImagenActual === imagenes.length - 1) {
+indiceImagenActual = 0;
+} else {
+indiceImagenActual++;
+}
+actualizarImagen();
+}
+
+// Función para ir a la primera imagen
+function irAPrimeraImagen() {
+indiceImagenActual = 0;
+actualizarImagen();
+}
+
+// Función para ir a la última imagen
+function irAUltimaImagen() {
+indiceImagenActual = imagenes.length - 1;
+actualizarImagen();
+}
+
+// Event listeners para los botones
+document.querySelector("#comienzo").addEventListener("click", irAPrimeraImagen);
+document.querySelector("#anterior").addEventListener("click", irAImagenAnterior);
+document.querySelector("#siguente").addEventListener("click", irASiguienteImagen);
+document.querySelector("#ultima").addEventListener("click", irAUltimaImagen);
+
+// Actualizamos la imagen al cargar la página
+actualizarImagen();
+</script>
+
+</body>
+</html>
